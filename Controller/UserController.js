@@ -1,3 +1,4 @@
+const studentService = require("../Service/studentService");
 const userService = require("../Service/userService");
 const userValidation = require("./userValidation");
 // const userSheema = require("./userSheema");
@@ -33,17 +34,37 @@ const delUserr = (req, res) => {
   res.send(newData);
 };
 
-const myStudents = (req, res) => {
-  const studentsData = userService.getStudent();
+const myStudents = async (req, res) => {
+  console.log("in controller");
+  const studentsData = await studentService.getStudent();
+  console.log("back in controller");
+  console.log("student data", studentsData);
   res.send(studentsData);
 };
 const addStudent = (req, res) => {
   // const { error, value } = userSheema.createUser.validate(req, body);
   let data = req.body;
-  const user = userService.addStudents(data);
+  console.log(data);
+  const user = studentService.addStudent(data);
   res.send(user);
 };
+const UpdateStudent = (req, res) => {
+  let studentId = req.params.RollNo;
+  let updateStudentData = req.body;
+  const data = studentService.updtstudent(studentId, updateStudentData);
+  // studentService;
+  res.send(data);
+};
 
+const delStudent = (req, res) => {
+  let studentId = req.params.RollNo;
+  console.log(studentId);
+  const newData = studentService.deleteStudent(studentId);
+
+  //   let updateUserData = req.body;
+
+  res.send(newData);
+};
 module.exports = {
   MyUser,
   userData,
@@ -52,4 +73,6 @@ module.exports = {
   delUserr,
   myStudents,
   addStudent,
+  UpdateStudent,
+  delStudent,
 };

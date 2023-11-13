@@ -23,11 +23,5 @@ module.exports = {
       return DelUser;
     }
   },
-  getStudent: () => {
-    return students;
-  },
-  addStudents: (data) => {
-    const updateData = students.push(data);
-    return students;
-  },
+ 
 };

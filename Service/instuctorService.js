@@ -28,7 +28,7 @@ module.exports = {
     const teachers = await models.teacher.findByPk(teacherId);
     if (teachers) {
       teachers.destroy();
-      return "Student Delete Succfull";
+      return "Teacher Delete Succfully";
     }
     return null;
   },

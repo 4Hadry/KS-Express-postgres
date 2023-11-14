@@ -3,9 +3,13 @@ const userService = require("../Service/userService");
 const userValidation = require("./userValidation");
 // const userSheema = require("./userSheema");
 
-const MyUser = (req, res, next) => {
-  res.send("UserControler");
+const MyUser = async (req, res, next) => {
+  // res.send("UserControler");
+  const userData = await userService.getUser();
+
+  res.send(userData);
 };
+
 const userData = (req, res) => {
   const user = userService.getUser();
   res.send(user);
